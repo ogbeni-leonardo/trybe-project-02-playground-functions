@@ -42,29 +42,17 @@ function highestCount(array) {
 
 // Desafio 7
 function catAndMouse(mouse, cat1, cat2) {
-  let distance1 = mouse - cat1; // -1
-  let distance2 = mouse - cat2; // -1
-  // Se a distância que existe entre o rato, o gato 1 e o gato 2 for positiva
-  if (distance1 > 0 && distance2 > 0) {
-    // Se a distância for a mesma
-    if (distance1 === distance2) {
-      return 'os gatos trombam e o rato foge';
-    } else if (distance1 < distance2) {
-      return 'cat 1';
-    }
-    // Caso nenhuma das afirmações acima tenham sido verdadeiras
-    return 'cat2';
-  // Se um dos valores de distância for negativo
-  } else {
-    // Se a soma do(s) valor(es) for igual a zero (distância igual)
-    if (distance1 + distance2 === 0 || distance1 === distance2) {
-      return 'os gatos trombam e o rato foge';
-    } else if (distance1 > distance2) {
-      return 'cat1'
-    }
-    // Caso nenhuma das afirmações acima tenham sido verdadeiras
-    return 'cat2'
+  // Calculando a disntância do rato e dos gatos com um valor absoluto (sem negativos)
+  let distance1 = Math.abs(mouse - cat1); // -1
+  let distance2 = Math.abs(mouse - cat2); // -1
+
+  if (distance1 < distance2) {
+    return 'cat1';
   }
+  if (distance1 === distance2) {
+    return 'os gatos trombam e o rato foge';
+  }
+  return 'cat2';
 }
 
 // Desafio 8
@@ -77,7 +65,7 @@ function fizzBuzz(array) {
     } else if (number % 3 === 0) {
       result.push('fizz');
     } else if (number % 5 === 0) {
-      result.push('buzz')
+      result.push('buzz');
     } else {
       result.push('bug!');
     }
@@ -86,16 +74,45 @@ function fizzBuzz(array) {
 }
 
 // Desafio 9
-function encode() {
-  // seu código aqui
+function encode(string) {
+  let charChange = { a: 1, e: 2, i: 3, o: 4, u: 5 };
+  let text = '';
+  for (let letter of string) {
+    if (letter in charChange) {
+      text += charChange[letter];
+    } else {
+      text += letter;
+    }
+  }
+  return text;
 }
-function decode() {
-  // seu código aqui
+
+function decode(string) {
+  let numberChange = { 1: 'a', 2: 'e', 3: 'i', 4: 'o', 5: 'u' };
+  let text = '';
+  for (let letter of string) {
+    if (letter in numberChange) {
+      text += numberChange[letter];
+    } else {
+      text += letter;
+    }
+  }
+  return text;
 }
 
 // Desafio 10
-function techList() {
-  // seu código aqui
+function techList(array, username) {
+  let list = array.sort();
+  let objects = [];
+  if (array.length > 0) {
+    for (let skill of list) {
+      objects.push(
+        { tech: skill, name: username },
+      );
+    }
+    return objects;
+  }
+  return 'Vazio!';
 }
 
 module.exports = {
