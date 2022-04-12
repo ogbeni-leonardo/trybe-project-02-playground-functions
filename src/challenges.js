@@ -19,14 +19,34 @@ function concatName(array) {
 }
 
 // Desafio 5
-function footballPoints() {
-  // seu código aqui
+function footballPoints(wins, ties) {
+  return (wins * 3) + ties;
 }
 
 // Desafio 6
-function highestCount() {
-  // seu código aqui
+function highestCount(array) {
+  let bigger;
+  let repeat;
+
+  for (let index in array) {
+    number = array[index];
+    if (index === '0') {
+      bigger = number;
+      repeat = 1;
+    } 
+    else if (number == bigger) {
+      repeat += 1;
+    } 
+    else if (number > bigger) {
+      bigger = number;
+      repeat = 1;
+    }
+  }
+  
+  return repeat;
 }
+
+console.log(highestCount([0, 0, 0]))
 
 // Desafio 7
 function catAndMouse() {
