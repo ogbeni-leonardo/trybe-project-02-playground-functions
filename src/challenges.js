@@ -58,7 +58,6 @@ function catAndMouse(mouse, cat1, cat2) {
 // Desafio 8
 function fizzBuzz(array) {
   let result = [];
-
   for (let number of array) {
     if (number % 3 === 0 && number % 5 === 0) {
       result.push('fizzBuzz');
