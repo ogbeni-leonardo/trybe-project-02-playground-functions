@@ -1,62 +1,44 @@
 // Desafio 11
-function repeatNumbers(array) {
+function repeatNumber(array) {
   let object = {};
   for (let number of array) {
-    if (`${number}` in object) {
-      object[`${number}`] += 1;
-    } else {
-      object[`${number}`] = 1;
-    }
+    if (number in object) object[number] += 1;
+    else object[number] = 1;
   }
-  for (let number in object) {
-    if (object[number] > 2) {
-      return false;
-    }
-  }
-  return true;
+  return object;
 }
 
-function validNumbers(array) {
-  for (let number of array) {
-    if (number < 0 || number > 9) {
-      return false;
-    }
+function validNumber(number) {
+  if (number <= 9 && number >= 0) return true;
+  return false;
+}
+
+function formatPhoneNumber(array) {
+  let phoneNumber = `(${array[0]}${array[1]}) `;
+  for (let index = 2; index < array.length; index += 1) {
+    phoneNumber += array[index];
+    if (index === 6) phoneNumber += '-';
   }
-  return true;
+  return phoneNumber;
 }
 
 function generatePhoneNumber(array) {
-  let phone = '';
-  if (array.length === 11){
-    if (repeatNumbers(array) && validNumbers(array)) {
-      for (let index = 0; index < array.length; index += 1) {
-        if (index === 0) {
-          phone += `(${array[index]}`;
-        } else if (index === 1) {
-          phone += `${array[index]}) `;
-        } else {
-          phone += array[index];
-          if (index === 6) {
-            phone += '-';
-          }
-        }
-      }
-      return phone;
+  // Se o tamanho for diferente de 11
+  if (array.length !== 11) return 'Array com tamanho incorreto.';
+  // Se algum número se repete mais de 2 vezes ou se ele não for válido
+  let numbersRepetition = repeatNumber(array);
+  for (let key in numbersRepetition) {
+    if (numbersRepetition[key] > 2 || validNumber(parseInt(key, 10)) === false) {
+      return 'não é possível gerar um número de telefone com esses valores';
     }
-    return 'não é possível gerar um número de telefone com esses valores';
   }
-  return 'Array com tamanho incorreto.';
+  // Retornando o número já formatado
+  return formatPhoneNumber(array);
 }
 
 // Desafio 12
 function triangleCheck(lineA, lineB, lineC) {
-  if (lineA < (lineB + lineC) && lineA > Math.abs(lineB - lineC)) {
-    return true;
-  } else if (lineB < (lineA + lineC) && lineB > Math.abs(lineA - lineC)) {
-    return true;
-  } else if (lineC < (lineA + lineB) && lineC > Math.abs(lineA - lineB)) {
-    return true;
-  }
+  if (lineA < (lineB + lineC) && lineA > Math.abs(lineB - lineC)) return true;
   return false;
 }
 
@@ -65,14 +47,11 @@ function hydrate(string) {
   let list = string.split(' ');
   let counter = 0;
   for (let word of list) {
-    if (isNaN(word) === false) {
-      counter += parseInt(word);
+    if (parseInt(word, 10)) {
+      counter += parseInt(word, 10);
     }
   }
-  if (counter === 1){
-    return `${counter} copo de água`
-  }
-  return `${counter} copos de água`
+  return `${counter} ${(counter > 1) ? 'copos' : 'copo'} de água`;
 }
 
 module.exports = {

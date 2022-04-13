@@ -56,20 +56,24 @@ function catAndMouse(mouse, cat1, cat2) {
 }
 
 // Desafio 8
+function divisivelPor(dividendo, divisor) {
+  if (dividendo % divisor === 0) return true;
+  return false;
+}
+
+function message(number) {
+  if (divisivelPor(number, 3) && divisivelPor(number, 5)) return 'fizzBuzz';
+  if (divisivelPor(number, 3)) return 'fizz';
+  if (divisivelPor(number, 5)) return 'buzz';
+  return 'bug!';
+}
+
 function fizzBuzz(array) {
-  let result = [];
+  let resultado = [];
   for (let number of array) {
-    if (number % 3 === 0 && number % 5 === 0) {
-      result.push('fizzBuzz');
-    } else if (number % 3 === 0) {
-      result.push('fizz');
-    } else if (number % 5 === 0) {
-      result.push('buzz');
-    } else {
-      result.push('bug!');
-    }
+    resultado.push(message(number));
   }
-  return result;
+  return resultado;
 }
 
 // Desafio 9
