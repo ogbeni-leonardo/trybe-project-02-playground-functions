@@ -1,4 +1,3 @@
-// Desafio 11
 function repeatNumber(array) {
   let object = {};
   for (let number of array) {
@@ -23,26 +22,21 @@ function formatPhoneNumber(array) {
 }
 
 function generatePhoneNumber(array) {
-  // Se o tamanho for diferente de 11
   if (array.length !== 11) return 'Array com tamanho incorreto.';
-  // Se algum número se repete mais de 2 vezes ou se ele não for válido
   let numbersRepetition = repeatNumber(array);
   for (let key in numbersRepetition) {
     if (numbersRepetition[key] > 2 || validNumber(parseInt(key, 10)) === false) {
       return 'não é possível gerar um número de telefone com esses valores';
     }
   }
-  // Retornando o número já formatado
   return formatPhoneNumber(array);
 }
 
-// Desafio 12
 function triangleCheck(lineA, lineB, lineC) {
   if (lineA < (lineB + lineC) && lineA > Math.abs(lineB - lineC)) return true;
   return false;
 }
 
-// Desafio 13
 function hydrate(string) {
   let list = string.split(' ');
   let counter = 0;
